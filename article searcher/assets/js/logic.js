@@ -49,11 +49,11 @@
 
 		    	console.log("Call was made");
 		    	for (var i = 0; i < 3; i++) {
-		    			$("#data-goes-here").append(`${anything.response.results[i].webTitle}<br>
-		    			${anything.response.results[i].webPublicationDate}<br>
-		    			${anything.response.results[i].webUrl}<br><br>`);
+		    			$("#data-goes-here").append("<h2>" + anything.response.results[i].webTitle + "</h2><br>"
+		    		+ anything.response.results[i].webPublicationDate + "<br>"
+		    		+ "<a target='_blank' href=" + anything.response.results[i].webUrl + ">" + anything.response.results[i].webUrl + "</a><br><br>");
 		    	}
-		    });	
+		    });
 
                 $.ajax({
               url: query2URL,
@@ -61,9 +61,9 @@
             }).done(function(status) {
             	console.log("call 2 was made");
                 for (var j = 0; j < 3; j++) {    
-            		$("#data2-goes-here").append(`${status.response.docs[j].snippet}<br>
-		    		${status.response.docs[j].pub_date}<br>
-		    		${status.response.docs[j].web_url}<br><br>`);
+            		$("#data2-goes-here").append("<h2>" + status.response.docs[j].snippet + "</h2><br>"
+		    		+ status.response.docs[j].pub_date + "<br>"
+		    		+ "<a target='_blank' href=" + status.response.docs[j].web_url + ">" + status.response.docs[j].web_url + "</a><br><br>");
             	}
             });
 	}); //closing on click

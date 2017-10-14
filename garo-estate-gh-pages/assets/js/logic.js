@@ -31,7 +31,7 @@
 				console.log(toDate);
 			} 
 			else{
-				queryURL = "https://content.guardianapis.com/search?q=" + search + "&from-date=" + fromDate + "&to-date=" + toDate + "&api-key=4c3b66fa-bd94-4809-9a76-6837f3a9dace";
+				queryURL = `https://content.guardianapis.com/search?q=${search}&from-date=${fromDate}&to-date=${toDate}&api-key=4c3b66fa-bd94-4809-9a76-6837f3a9dace`;
 				query2URL  = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + search + "&begin_date=" + fromDate + "&end_date=" + toDate + "&api-key=b9f91d369ff59547cd47b931d8cbc56b:0:74623931"
 				console.log("4");
 				console.log(fromDate);
