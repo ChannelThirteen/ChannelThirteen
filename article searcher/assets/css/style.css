@@ -3044,3 +3044,7 @@ padding: 10px;
 #map {
     height: 300px;
 }
+
+#data-goes-here, #data2-goes-here{
+    word-wrap: : break-word;
+}
