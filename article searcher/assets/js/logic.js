@@ -95,23 +95,12 @@
             });
 //closing function
     }
-    $("#dropDown").on("click", function(event){
-        
-        event.preventDefault();
-        //$("#topSearch").empty();
-        //$("#topSearch").toggle();
-              database.ref().limitToLast(5).on("child_added", function(snapshot) {
-                $("#topSearch").prepend(snapshot.val().search + "</br>");
-              },  function(errorObject) {
-                console.log("The read failed: " + errorObject.code);
-              });
-
-        // console.log("button was clicked");
-        // clear();
-        // showResults();
-    });
-
-
+   
+    database.ref().limitToLast(5).on("child_added", function(snapshot) {
+        $("#topSearch").prepend(snapshot.val().search + "</br>");
+      },  function(errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
 
     $("#submit").on("click", function(event){
         
