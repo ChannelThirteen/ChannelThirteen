@@ -5,7 +5,7 @@
     var toDate = $("#toDate").val();
     var queryURL;
     var query2URL;    
-        if(search !== null){
+        if(search !== ""){
             if((fromDate === null || fromDate === "") && (toDate === null || toDate === "")){
                 queryURL = "https://content.guardianapis.com/search?q=" + search + "&api-key=4c3b66fa-bd94-4809-9a76-6837f3a9dace";
                 query2URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + search + "&api-key=b9f91d369ff59547cd47b931d8cbc56b:0:74623931"
@@ -36,6 +36,7 @@
             }
         }else {
             $("#data-goes-here").html("Search field is empty!");
+            $("#data2-goes-here").html("Search field is empty!");
         }
             $.ajax({
               url: queryURL,
