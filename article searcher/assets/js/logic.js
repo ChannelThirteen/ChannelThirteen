@@ -1,10 +1,41 @@
+        
+    
+
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCxJxYwVIQW99AVj9NO46k3GPfn_GipH0I",
+    authDomain: "proj1-b26a7.firebaseapp.com",
+    databaseURL: "https://proj1-b26a7.firebaseio.com",
+    projectId: "proj1-b26a7",
+    storageBucket: "proj1-b26a7.appspot.com",
+    messagingSenderId: "931172121198"
+  };
+  firebase.initializeApp(config);
+
+    var database = firebase.database();
+    
+    var search = "";
+    
+    
     function showResults(){
     console.log("inside showResults function")
-    var search = $("#search-input").val();
+
+
+
+        search = $("#search-input").val();
     var fromDate = $("#fromDate").val();
     var toDate = $("#toDate").val();
     var queryURL;
-    var query2URL;    
+    var query2URL;  
+    
+    database.ref().push({
+        
+        search: search,
+            
+      });
+
+      
         if(search !== null){
             if((fromDate === null || fromDate === "") && (toDate === null || toDate === "")){
                 queryURL = "https://content.guardianapis.com/search?q=" + search + "&api-key=4c3b66fa-bd94-4809-9a76-6837f3a9dace";
@@ -61,22 +92,47 @@
             });
 //closing function
     }
+    $("#dropDown").on("click", function(event){
+        
+        event.preventDefault();
+        $("#topSearch").empty();
+        
+              database.ref().on("child_added", function(snapshot) {
+                $("#topSearch").append(snapshot.val().search + "<br>");
+              },  function(errorObject) {
+                console.log("The read failed: " + errorObject.code);
+              });
+
+
+        // console.log("button was clicked");
+        // clear();
+        // showResults();
+    });
+
+
+
     $("#submit").on("click", function(event){
+        
         event.preventDefault();
         // console.log("button was clicked");
         clear();
         showResults();
     }); //closing on click
     $("#search-input").keypress(function(event) {
-        console.log("this is the search input", event);
         if (event.which == 13) {
             event.preventDefault(); 
             clear();
             showResults();
         }
     });
+
+
+
+
     function clear(){
         console.log("clear")
         $("#data-goes-here").empty();
         $("#data2-goes-here").empty();
     }
+ 
+

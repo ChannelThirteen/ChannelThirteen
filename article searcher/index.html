@@ -33,6 +33,9 @@
         <link rel="stylesheet" href="assets/css/owl.transitions.css">
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/responsive.css">
+
+        <script src="https://www.gstatic.com/firebasejs/4.5.2/firebase.js"></script>
+
     </head>
     <body>
         <div class="slider-area">
@@ -54,7 +57,7 @@
                         <div class="search-form wow pulse" data-wow-delay="0.8s">
 
                             <form action="" class=" form-inline">
-                                <button class="btn  toggle-btn" type="button"><i class="fa fa-bars"></i></button>
+                                <button class="btn  toggle-btn" id="dropDown" type="button"><i class="fa fa-bars"></i></button>
 
                                 <div class="form-group">
                                     <input type="text" id="search-input" class="form-control" placeholder="search">
@@ -85,7 +88,8 @@
                                     </div>                             
                                     <button class="btn search-btn prop-btm-sheaerch" type="submit"><i class="fa fa-search"></i></button>  
                                 </div>                    
-
+                                <div style="color:red" id="topSearch">
+                            </div>    
                             </form>
                         </div>
                     </div>
@@ -160,5 +164,8 @@
 
         <script src="assets/js/main.js"></script>
         <script src="assets/js/logic.js"></script>
+
+        
+
     </body>
 </html>
