@@ -22,7 +22,6 @@
     console.log("inside showResults function")
 
 
-
         search = $("#search-input").val();
     var fromDate = $("#fromDate").val();
     var toDate = $("#toDate").val();
@@ -36,10 +35,11 @@
       });
 
       
-        if(search !== null){
+        if(search !== ""){
             if((fromDate === null || fromDate === "") && (toDate === null || toDate === "")){
                 queryURL = "https://content.guardianapis.com/search?q=" + search + "&api-key=4c3b66fa-bd94-4809-9a76-6837f3a9dace";
                 query2URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + search + "&api-key=b9f91d369ff59547cd47b931d8cbc56b:0:74623931"
+                $(".warning").html("");
                 // console.log("1");
                 // console.log(fromDate);
                 // console.log(toDate);
@@ -47,6 +47,7 @@
             else if((toDate === null || toDate === "") && (fromDate !== null || fromDate !== "")){
                 queryURL = "https://content.guardianapis.com/search?q=" + search + "&from-date=" + fromDate + "&api-key=4c3b66fa-bd94-4809-9a76-6837f3a9dace";
                 query2URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + search + "&begin_date=" + fromDate + "&api-key=b9f91d369ff59547cd47b931d8cbc56b:0:74623931";
+                $(".warning").html("");
                 // console.log("2");
                 // console.log(fromDate);
                 // console.log(toDate);
@@ -54,19 +55,21 @@
             else if((fromDate === null || fromDate === "") && (toDate !== null || toDate !== "")){
                 queryURL = "https://content.guardianapis.com/search?q=" + search + "&to-date=" + toDate + "&api-key=4c3b66fa-bd94-4809-9a76-6837f3a9dace";
                 query2URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + search + "&end_date=" + toDate + "&api-key=b9f91d369ff59547cd47b931d8cbc56b:0:74623931";
-            //  console.log("3");         
+                $(".warning").html(""); 
+                //  console.log("3");         
             //  console.log(fromDate);
                 // console.log(toDate);
             } 
             else{
                 queryURL = "https://content.guardianapis.com/search?q=" + search + "&from-date=" + fromDate + "&to-date=" + toDate + "&api-key=4c3b66fa-bd94-4809-9a76-6837f3a9dace";
                 query2URL  = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + search + "&begin_date=" + fromDate + "&end_date=" + toDate + "&api-key=b9f91d369ff59547cd47b931d8cbc56b:0:74623931"
+                $(".warning").html("");
                 // console.log("4");
                 // console.log(fromDate);
                 // console.log(toDate);
             }
         }else {
-            $("#data-goes-here").html("Search field is empty!");
+            $(".warning").html("You Must Enter A Search Term");
         }
             $.ajax({
               url: queryURL,
@@ -95,10 +98,10 @@
     $("#dropDown").on("click", function(event){
         
         event.preventDefault();
-        $("#topSearch").empty();
-        
-              database.ref().on("child_added", function(snapshot) {
-                $("#topSearch").append(snapshot.val().search + "<br>");
+        //$("#topSearch").empty();
+        //$("#topSearch").toggle();
+              database.ref().limitToLast(5).on("child_added", function(snapshot) {
+                $("#topSearch").prepend(snapshot.val().search + "</br>");
               },  function(errorObject) {
                 console.log("The read failed: " + errorObject.code);
               });

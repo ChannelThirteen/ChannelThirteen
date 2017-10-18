@@ -3054,3 +3054,9 @@ padding: 10px;
     height: 3.5em;
     overflow: hidden;
 }
+#topSearch{
+    font-size: 16px;
+    height: 8.5em;
+    overflow: hidden;
+    color: orange;
+}
