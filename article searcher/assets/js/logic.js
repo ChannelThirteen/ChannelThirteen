@@ -103,7 +103,6 @@
                 console.log("The read failed: " + errorObject.code);
               });
 
-
         // console.log("button was clicked");
         // clear();
         // showResults();
