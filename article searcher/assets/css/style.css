@@ -1025,9 +1025,18 @@ label small{
 .slider-content h2 {
     font-size: 40px; 
     margin-bottom: 20px;
-    text-transform: uppercase;color: rgba(255, 165, 0, 0.71);
-font-weight: 500;
+    text-transform: uppercase;
+    color: orange;
+    font-weight: bold;
 }
+
+.slider-content h3 {
+    font-size: 20px; 
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    color: black;
+}
+
 .slider-content p {
     font-size: 14px;
     margin-bottom: 60px;
