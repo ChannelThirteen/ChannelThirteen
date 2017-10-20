@@ -12,7 +12,6 @@
         var search = "";
 
         function showResults() {
-        	console.log("inside showResults function")
         	search = $("#search-input").val();
         	var fromDate = $("#fromDate").val();
         	var toDate = $("#toDate").val();
@@ -21,6 +20,7 @@
         	database.ref().push({
         		search: search,
         	});
+                //Checks if search, from date and to date should be added to the URL
         	if (search !== "") {
         		if ((fromDate === null || fromDate === "") && (toDate === null || toDate === "")) {
         			queryURL = "https://content.guardianapis.com/search?q=" + search + "&api-key=4c3b66fa-bd94-4809-9a76-6837f3a9dace";
@@ -54,6 +54,8 @@
         	} else {
         		$(".warning").html("You Must Enter A Search Term");
         	}
+
+                //makes the call to the Guardian API
         	$.ajax({
         		url: queryURL,
         		method: "GET"
@@ -63,6 +65,8 @@
         			$("#data-goes-here").append("<div id='web-title'>" + anything.response.results[i].webTitle + "</div><br>" + anything.response.results[i].webPublicationDate + "<br>" + "<a target='_blank' href=" + anything.response.results[i].webUrl + ">" + anything.response.results[i].webUrl + "</a><br><br>");
         		}
         	});
+
+                //makes the call to the NYTimes API
         	$.ajax({
         		url: query2URL,
         		method: "GET"
@@ -74,17 +78,23 @@
         	});
         	//closing function
         }
+
+        //grabs data from Firebase and pushes the last five searches
         database.ref().limitToLast(5).on("child_added", function(snapshot) {
         	$("#topSearch").prepend(snapshot.val().search + "</br>");
         }, function(errorObject) {
-        	console.log("The read failed: " + errorObject.code);
+        	//console.log("The read failed: " + errorObject.code);
         });
+
+        //On click button for the submit button
         $("#submit").on("click", function(event) {
         	event.preventDefault();
         	// console.log("button was clicked");
         	clear();
         	showResults();
         }); //closing on click
+
+        //enter key can be used to submit
         $("#search-input").keypress(function(event) {
         	if (event.which == 13) {
         		event.preventDefault();
@@ -93,8 +103,9 @@
         	}
         });
 
+        //clears the previous results HTML
         function clear() {
-        	console.log("clear")
+        	//console.log("clear")
         	$("#data-goes-here").empty();
         	$("#data2-goes-here").empty();
         }
